@@ -7,7 +7,7 @@
 
 #include "mgos_app.h"
 
-extern bool mgos_lwip_init(void);
+
 extern bool mgos_mongoose_init(void);
 extern bool mgos_vfs_common_init(void);
 extern bool mgos_vfs_dev_part_init(void);
@@ -16,157 +16,68 @@ extern bool mgos_vfs_fs_spiffs_init(void);
 extern bool mgos_core_init(void);
 extern bool mgos_mbedtls_init(void);
 extern bool mgos_mjs_init(void);
+extern bool mgos_mqtt_init(void);
 extern bool mgos_rpc_common_init(void);
+extern bool mgos_rpc_loopback_init(void);
 extern bool mgos_rpc_service_config_init(void);
 extern bool mgos_rpc_service_fs_init(void);
 extern bool mgos_rpc_uart_init(void);
 extern bool mgos_wifi_init(void);
 
-
 #ifndef MGOS_LIB_INFO_VERSION
 struct mgos_lib_info {
   const char *name;
   const char *version;
-  const char *repo_version;
-  const char *binary_libs;
   bool (*init)(void);
 };
-#define MGOS_LIB_INFO_VERSION 2
-#endif
-
-#ifndef MGOS_MODULE_INFO_VERSION
-struct mgos_module_info {
-  const char *name;
-  const char *repo_version;
-};
-#define MGOS_MODULE_INFO_VERSION 1
 #endif
 
 const struct mgos_lib_info mgos_libs_info[] = {
 
-    // "lwip". deps: [ ]
-#if MGOS_LIB_INFO_VERSION == 1
-    {.name = "lwip", .version = "1.4.2", .init = mgos_lwip_init},
-#else
-    {.name = "lwip", .version = "1.4.2", .repo_version = "417e07ea1b5d37f59428caee93b6730798090460", .binary_libs = NULL, .init = mgos_lwip_init},
-#endif
-
-    // "mongoose". deps: [ "lwip" ]
-#if MGOS_LIB_INFO_VERSION == 1
+    // "mongoose". deps: [ ]
     {.name = "mongoose", .version = "6.18", .init = mgos_mongoose_init},
-#else
-    {.name = "mongoose", .version = "6.18", .repo_version = "24f3c520fdfd5d7c33ff2734d4be42aab75107e9", .binary_libs = "libmongoose-esp8266-2.20.0.a:65663431376434653064343630363738313939343362393735616437386537643132393834343433333735316430353432353430336535303332626464636634", .init = mgos_mongoose_init},
-#endif
 
     // "vfs-common". deps: [ ]
-#if MGOS_LIB_INFO_VERSION == 1
     {.name = "vfs-common", .version = "1.0", .init = mgos_vfs_common_init},
-#else
-    {.name = "vfs-common", .version = "1.0", .repo_version = "23525d042fe865dbc8088513f510e26c62ae4800", .binary_libs = NULL, .init = mgos_vfs_common_init},
-#endif
 
     // "vfs-dev-part". deps: [ "vfs-common" ]
-#if MGOS_LIB_INFO_VERSION == 1
     {.name = "vfs-dev-part", .version = "1.0", .init = mgos_vfs_dev_part_init},
-#else
-    {.name = "vfs-dev-part", .version = "1.0", .repo_version = "0fb3ae262f50f4847bcc487d7f1101e89e1656ed", .binary_libs = NULL, .init = mgos_vfs_dev_part_init},
-#endif
 
     // "vfs-fs-lfs". deps: [ "vfs-common" ]
-#if MGOS_LIB_INFO_VERSION == 1
-    {.name = "vfs-fs-lfs", .version = "2.4.0", .init = mgos_vfs_fs_lfs_init},
-#else
-    {.name = "vfs-fs-lfs", .version = "2.4.0", .repo_version = "b611462e03d431f9541f50763b3153552db81861", .binary_libs = NULL, .init = mgos_vfs_fs_lfs_init},
-#endif
+    {.name = "vfs-fs-lfs", .version = "2.2.0", .init = mgos_vfs_fs_lfs_init},
 
     // "vfs-fs-spiffs". deps: [ "vfs-common" ]
-#if MGOS_LIB_INFO_VERSION == 1
     {.name = "vfs-fs-spiffs", .version = "1.0", .init = mgos_vfs_fs_spiffs_init},
-#else
-    {.name = "vfs-fs-spiffs", .version = "1.0", .repo_version = "0c1d9d07a4bf900f08ca4a250e29e7f5931301c5", .binary_libs = NULL, .init = mgos_vfs_fs_spiffs_init},
-#endif
 
-    // "core". deps: [ "lwip" "mongoose" "vfs-common" "vfs-dev-part" "vfs-fs-lfs" "vfs-fs-spiffs" ]
-#if MGOS_LIB_INFO_VERSION == 1
+    // "core". deps: [ "mongoose" "vfs-common" "vfs-dev-part" "vfs-fs-lfs" "vfs-fs-spiffs" ]
     {.name = "core", .version = "1.0", .init = mgos_core_init},
-#else
-    {.name = "core", .version = "1.0", .repo_version = "9cbb8437919696a4a8779ebb4d0cd78d99890ac6", .binary_libs = NULL, .init = mgos_core_init},
-#endif
-
-    // "ca-bundle". deps: [ "core" ]
-#if MGOS_LIB_INFO_VERSION == 1
-    {.name = "ca-bundle", .version = "1.0", .init = NULL},
-#else
-    {.name = "ca-bundle", .version = "1.0", .repo_version = "82ddde1a7e95d316f0ef6a43ecfc265b0fbdaf4c", .binary_libs = NULL, .init = NULL},
-#endif
 
     // "mbedtls". deps: [ ]
-#if MGOS_LIB_INFO_VERSION == 1
-    {.name = "mbedtls", .version = "2.16.11-cesanta1", .init = mgos_mbedtls_init},
-#else
-    {.name = "mbedtls", .version = "2.16.11-cesanta1", .repo_version = "9971208d45aed1aec5b9e064145c3c8a7bb180f8", .binary_libs = NULL, .init = mgos_mbedtls_init},
-#endif
+    {.name = "mbedtls", .version = "2.16.6-cesanta1", .init = mgos_mbedtls_init},
 
     // "mjs". deps: [ "core" ]
-#if MGOS_LIB_INFO_VERSION == 1
-    {.name = "mjs", .version = "1.0.0", .init = mgos_mjs_init},
-#else
-    {.name = "mjs", .version = "1.0.0", .repo_version = "dc7442685da3d1b1b06fbf4102905a2fece286ee", .binary_libs = NULL, .init = mgos_mjs_init},
-#endif
+    {.name = "mjs", .version = "1.0", .init = mgos_mjs_init},
+
+    // "mqtt". deps: [ "core" ]
+    {.name = "mqtt", .version = "1.0", .init = mgos_mqtt_init},
 
     // "rpc-common". deps: [ "core" "mongoose" ]
-#if MGOS_LIB_INFO_VERSION == 1
     {.name = "rpc-common", .version = "1.0", .init = mgos_rpc_common_init},
-#else
-    {.name = "rpc-common", .version = "1.0", .repo_version = "9f25f5900c1ac39eaa79e5e30c679de502eb1953", .binary_libs = NULL, .init = mgos_rpc_common_init},
-#endif
+
+    // "rpc-loopback". deps: [ "core" "rpc-common" ]
+    {.name = "rpc-loopback", .version = "1.0", .init = mgos_rpc_loopback_init},
 
     // "rpc-service-config". deps: [ "core" "rpc-common" ]
-#if MGOS_LIB_INFO_VERSION == 1
     {.name = "rpc-service-config", .version = "1.0", .init = mgos_rpc_service_config_init},
-#else
-    {.name = "rpc-service-config", .version = "1.0", .repo_version = "821db3ffb8104de17bd511c67e423a4db6f59d44", .binary_libs = NULL, .init = mgos_rpc_service_config_init},
-#endif
 
     // "rpc-service-fs". deps: [ "core" "rpc-common" "vfs-common" ]
-#if MGOS_LIB_INFO_VERSION == 1
     {.name = "rpc-service-fs", .version = "1.0", .init = mgos_rpc_service_fs_init},
-#else
-    {.name = "rpc-service-fs", .version = "1.0", .repo_version = "39437663b14759671a37e9670a46c65e5519c369", .binary_libs = NULL, .init = mgos_rpc_service_fs_init},
-#endif
 
     // "rpc-uart". deps: [ "core" "rpc-common" ]
-#if MGOS_LIB_INFO_VERSION == 1
     {.name = "rpc-uart", .version = "1.0", .init = mgos_rpc_uart_init},
-#else
-    {.name = "rpc-uart", .version = "1.0", .repo_version = "d58fee363e9e7176d9079b37c8ecfde1d5a2a3dd", .binary_libs = NULL, .init = mgos_rpc_uart_init},
-#endif
 
-    // "wifi". deps: [ "core" "lwip" ]
-#if MGOS_LIB_INFO_VERSION == 1
+    // "wifi". deps: [ "core" ]
     {.name = "wifi", .version = "1.0", .init = mgos_wifi_init},
-#else
-    {.name = "wifi", .version = "1.0", .repo_version = "51febec3070cd40a6ce8aa18e76cc4bb20101149", .binary_libs = NULL, .init = mgos_wifi_init},
-#endif
-
-    // "zz_boards". deps: [ ]
-#if MGOS_LIB_INFO_VERSION == 1
-    {.name = "zz_boards", .version = NULL, .init = NULL},
-#else
-    {.name = "zz_boards", .version = NULL, .repo_version = "a317361ee008969b8a96a2e7fa7eb243442dcb93", .binary_libs = NULL, .init = NULL},
-#endif
-
-    // Last entry.
-    {.name = NULL},
-};
-
-const struct mgos_module_info mgos_modules_info[] = {
-
-    {.name = "mbedtls_module", .repo_version = "74d761821fd23ea220eb552ece941908c2f48a39"},
-
-    {.name = "mjs_module", .repo_version = "b1b6eac6b1e5b830a5cb14f8f4dc690ef3162551"},
-
-    {.name = "mongoose-os", .repo_version = "1885c0fdb1302f3c9ddfbedd84351d7662fbf183"},
 
     // Last entry.
     {.name = NULL},
@@ -174,21 +85,11 @@ const struct mgos_module_info mgos_modules_info[] = {
 
 bool mgos_deps_init(void) {
   for (const struct mgos_lib_info *l = mgos_libs_info; l->name != NULL; l++) {
-#if MGOS_LIB_INFO_VERSION == 1
-    LOG(LL_DEBUG, ("Init %s %s...", l->name, (l->version ? l->version : "")));
-#else
-    LOG(LL_DEBUG, ("Init %s %s (%s)...",
-          l->name,
-          (l->version ? l->version : ""),
-          (l->repo_version ? l->repo_version : "")));
-#endif
-    if (l->init != NULL && !l->init()) {
+    LOG(LL_DEBUG, ("Init %s %s...", l->name, l->version));
+    if (!l->init()) {
       LOG(LL_ERROR, ("%s init failed", l->name));
       return false;
     }
-  }
-  for (const struct mgos_module_info *m = mgos_modules_info; m->name != NULL; m++) {
-    LOG(LL_DEBUG, ("Module %s %s", m->name, (m->repo_version ? m->repo_version : "")));
   }
   return true;
 }

@@ -2,5 +2,5 @@
   "arch": "esp8266",
   "platform": "esp8266",
   "app_name": "MOS_IOT_LIFEPO4_CHARGER",
-  "build_time_ms": 35421
+  "build_time_ms": 36941
 }

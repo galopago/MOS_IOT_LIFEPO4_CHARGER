@@ -81,6 +81,116 @@
   - b
   - true
   - title: Generate .jsc file when executing any .js file
+- - mqtt
+  - o
+  - title: MQTT settings
+- - mqtt.enable
+  - b
+  - false
+  - title: Enable MQTT
+- - mqtt.server
+  - s
+  - iot.eclipse.org:1883
+  - title: MQTT server
+- - mqtt.client_id
+  - s
+  - ""
+  - title: ClientID t send to the broker. Defaults to device.id.
+- - mqtt.user
+  - s
+  - ""
+  - title: User name
+- - mqtt.pass
+  - s
+  - ""
+  - title: Password
+- - mqtt.reconnect_timeout_min
+  - d
+  - 2
+  - title: Starting reconnect timeout
+- - mqtt.reconnect_timeout_max
+  - d
+  - 60
+  - title: Maximum reconnect timeout
+- - mqtt.ssl_cert
+  - s
+  - ""
+  - title: Client certificate to present to the server
+- - mqtt.ssl_key
+  - s
+  - ""
+  - title: Private key corresponding to the certificate
+- - mqtt.ssl_ca_cert
+  - s
+  - ""
+  - title: Verify server certificate using this CA bundle
+- - mqtt.ssl_cipher_suites
+  - s
+  - ""
+  - title: Cipher suites to offer to the server
+- - mqtt.ssl_psk_identity
+  - s
+  - ""
+  - title: PSK identity (must specify PSK cipher suites)
+- - mqtt.ssl_psk_key
+  - s
+  - ""
+  - title: PSK key
+- - mqtt.clean_session
+  - b
+  - true
+  - title: Clean Session
+- - mqtt.keep_alive
+  - i
+  - 60
+  - title: Keep alive interval
+- - mqtt.will_topic
+  - s
+  - ""
+  - title: Will topic
+- - mqtt.will_message
+  - s
+  - ""
+  - title: Will message
+- - mqtt.will_retain
+  - b
+  - false
+  - title: Will retain flag
+- - mqtt.max_qos
+  - i
+  - 2
+  - title: Limit QoS of outgoing messages to at most this
+- - mqtt.recv_mbuf_limit
+  - i
+  - 3072
+  - title: Limit recv buffer size
+- - mqtt.require_time
+  - b
+  - false
+  - title: Only connect if (when) wall time is set
+- - mqtt.cloud_events
+  - b
+  - true
+  - title: Trigger cloud events when connected / disconnected
+- - mqtt.max_queue_length
+  - i
+  - 5
+  - title: Maximum queue length for buffering QoS 1+ messages. 0 to disable queue.
+- - mqtt1
+  - mqtt
+  - title: Backup MQTT settings
+- - mqtt1.enable
+  - false
+- - mqtt1.server
+  - ""
+- - debug.stdout_topic
+  - s
+  - ""
+  - title: MQTT topic to publish STDOUT to
+- - debug.stderr_topic
+  - s
+  - ""
+  - title: MQTT topic to publish STDERR to
 - - rpc
   - o
   - title: RPC settings
@@ -104,22 +214,14 @@
   - i
   - 25
   - title: Max Queue Length
-- - rpc.max_non_persistent_channels
-  - i
-  - 20
-  - title: Maximum number of simultaneous non-persistent channels
 - - rpc.default_out_channel_idle_close_timeout
   - i
   - 10
   - title: Default idle close timeout for outbound channels
-- - rpc.acl
-  - s
-  - ""
-  - title: RPC ACL spec - JSON or @file
 - - rpc.acl_file
   - s
   - ""
-  - title: File with RPC ACL JSON; deprecated, used if rpc.acl is not set
+  - title: File with RPC ACL JSON
 - - rpc.auth_domain
   - s
   - RPC
@@ -128,10 +230,6 @@
   - s
   - ""
   - title: File with user credentials in the htdigest format
-- - rpc.auth_algo
-  - i
-  - 0
-  - title: 'Password file hashing algorithm: 0 - MD5, 1 - SHA256'
 - - rpc.uart
   - o
   - title: RPC-over-UART settings
@@ -228,18 +326,6 @@
   - s
   - title: Password
     type: password
-- - wifi.sta.bssid
-  - s
-  - title: Specific AP to connect to
-- - wifi.sta.channel
-  - i
-  - title: Specific channel to use when connecting
-- - wifi.sta.last_bssid
-  - s
-  - title: Used to store AP's BSSID for quick connect
-- - wifi.sta.last_channel
-  - i
-  - title: Used to store AP's channel for quick connect
 - - wifi.sta.user
   - s
   - title: Username for WPA-PEAP mode
@@ -280,34 +366,22 @@
   - title: WiFi Station Config 2
 - - wifi.sta2.enable
   - false
-- - wifi.sta_rssi_thr
-  - i
-  - -95
-  - title: Do not consider APs with weaker signal
-- - wifi.sta_connect_timeout
-  - i
-  - 15
-  - title: Timeout for connection, seconds
-- - wifi.sta_roam_rssi_thr
-  - i
-  - -80
-  - title: If connected to AP with weaker signal, try to find a better one.
-- - wifi.sta_roam_interval
+- - wifi.sta_cfg_idx
   - i
   - 0
-  - title: Scan for better APs at this interval. Set to positive number ot enable.
-- - wifi.tx_rate_limit_11b
+  - title: WiFi station config index to use, 0, 1 or 2
+- - wifi.sta_connect_timeout
   - i
-  - -1
-  - title: TX rate limit for 11B mode, ((max << 8) | min)
-- - wifi.tx_rate_limit_11g
-  - i
-  - -1
-  - title: TX rate limit for 11G mode, ((max << 8) | min)
-- - wifi.tx_rate_limit_11n
-  - i
-  - -1
-  - title: TX rate limit for 11N mode, ((max << 8) | min)
+  - 30
+  - title: Timeout for connection, seconds
+- - wifi.ap.keep_enabled
+  - b
+  - true
+  - title: Keep AP enabled when station is on
+- - wifi.sta_all_chan_scan
+  - b
+  - true
+  - title: true to scan all channels or false to perform fast scan
 - - board
   - o
   - title: Board layout configuration
@@ -375,3 +449,7 @@
   - 2
 - - provision.led.active_high
   - false
+- - mqtt.server
+  - test.mosquitto.org
+- - mqtt.enable
+  - true

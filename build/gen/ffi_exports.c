@@ -65,7 +65,6 @@ int  mgos_gpio_blink(int, int, int);
 int  mgos_gpio_disable_int(int);
 int  mgos_gpio_enable_int(int);
 int  mgos_gpio_read(int);
-int  mgos_gpio_read_out(int);
 int  mgos_gpio_set_button_handler(int,int,int,int,void(*)(int, void *), void *);
 int  mgos_gpio_set_int_handler(int,int,void(*)(int,void *),void *);
 int  mgos_gpio_set_mode(int,int);
@@ -77,6 +76,10 @@ void  mgos_gpio_write(int,int);
 bool  mgos_is_inbound(void *);
 void  mgos_log(char *, int, int, char *);
 void * mgos_mjs_get_config();
+void  mgos_mqtt_add_global_handler(void (*)(void *, int, void *, void *), void *);
+bool  mgos_mqtt_global_is_connected();
+int  mgos_mqtt_pub(char *, void *, int, int, bool);
+void  mgos_mqtt_sub(char *, void (*)(void *, void *, int, void *, int, void *), void *);
 void * mgos_rpc_add_handler(void *, void (*)(void *, char *, char *, void *), void *);
 bool  mgos_rpc_call(char *, char *, char *, void (*)(char *, int, char *, void *), void *);
 bool  mgos_rpc_send_response(void *, char *);
@@ -174,7 +177,6 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"mgos_gpio_disable_int", mgos_gpio_disable_int},
   {"mgos_gpio_enable_int", mgos_gpio_enable_int},
   {"mgos_gpio_read", mgos_gpio_read},
-  {"mgos_gpio_read_out", mgos_gpio_read_out},
   {"mgos_gpio_set_button_handler", mgos_gpio_set_button_handler},
   {"mgos_gpio_set_int_handler", mgos_gpio_set_int_handler},
   {"mgos_gpio_set_mode", mgos_gpio_set_mode},
@@ -186,6 +188,10 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"mgos_is_inbound", mgos_is_inbound},
   {"mgos_log", mgos_log},
   {"mgos_mjs_get_config", mgos_mjs_get_config},
+  {"mgos_mqtt_add_global_handler", mgos_mqtt_add_global_handler},
+  {"mgos_mqtt_global_is_connected", mgos_mqtt_global_is_connected},
+  {"mgos_mqtt_pub", mgos_mqtt_pub},
+  {"mgos_mqtt_sub", mgos_mqtt_sub},
   {"mgos_rpc_add_handler", mgos_rpc_add_handler},
   {"mgos_rpc_call", mgos_rpc_call},
   {"mgos_rpc_send_response", mgos_rpc_send_response},
@@ -226,4 +232,4 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"sqrt", sqrt},
   {"strdup", strdup},
 };
-const int ffi_exports_cnt = 107;
+const int ffi_exports_cnt = 110;

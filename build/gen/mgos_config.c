@@ -1,22 +1,20 @@
 /* clang-format off */
 /*
  * Generated file - do not edit.
- * Command: /mongoose-os/tools/mgos_gen_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.20.0/apps/MOS_IOT_LIFEPO4_CHARGER/esp8266/build_contexts/build_ctx_426506618/build/gen/ /mongoose-os/src/mgos_debug_udp_config.yaml /data/fwbuild-volumes/2.20.0/apps/MOS_IOT_LIFEPO4_CHARGER/esp8266/build_contexts/build_ctx_426506618/build/gen/mos_conf_schema.yml
+ * Command: /mongoose-os/tools/mgos_gen_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.19.1/apps/MOS_IOT_LIFEPO4_CHARGER/esp8266/build_contexts/build_ctx_287583504/build/gen/ /mongoose-os/src/mgos_debug_udp_config.yaml /data/fwbuild-volumes/2.19.1/apps/MOS_IOT_LIFEPO4_CHARGER/esp8266/build_contexts/build_ctx_287583504/build/gen/mos_conf_schema.yml
  */
 
 #include "mgos_config.h"
 
 #include <stdbool.h>
 
-#include "common/cs_file.h"
-
 #include "mgos_config_util.h"
 
 
 /* struct mgos_config */
 static const struct mgos_conf_entry mgos_config_schema_[] = {
-    {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 138},
-    {.type = CONF_TYPE_OBJECT, .key = "debug", .offset = offsetof(struct mgos_config, debug), .num_desc = 10},
+    {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 170},
+    {.type = CONF_TYPE_OBJECT, .key = "debug", .offset = offsetof(struct mgos_config, debug), .num_desc = 12},
     {.type = CONF_TYPE_STRING, .key = "udp_log_addr", .offset = offsetof(struct mgos_config, debug.udp_log_addr)},
     {.type = CONF_TYPE_INT, .key = "udp_log_level", .offset = offsetof(struct mgos_config, debug.udp_log_level)},
     {.type = CONF_TYPE_INT, .key = "mbedtls_level", .offset = offsetof(struct mgos_config, debug.mbedtls_level)},
@@ -27,6 +25,8 @@ static const struct mgos_conf_entry mgos_config_schema_[] = {
     {.type = CONF_TYPE_INT, .key = "stderr_uart", .offset = offsetof(struct mgos_config, debug.stderr_uart)},
     {.type = CONF_TYPE_INT, .key = "factory_reset_gpio", .offset = offsetof(struct mgos_config, debug.factory_reset_gpio)},
     {.type = CONF_TYPE_STRING, .key = "mg_mgr_hexdump_file", .offset = offsetof(struct mgos_config, debug.mg_mgr_hexdump_file)},
+    {.type = CONF_TYPE_STRING, .key = "stdout_topic", .offset = offsetof(struct mgos_config, debug.stdout_topic)},
+    {.type = CONF_TYPE_STRING, .key = "stderr_topic", .offset = offsetof(struct mgos_config, debug.stderr_topic)},
     {.type = CONF_TYPE_OBJECT, .key = "device", .offset = offsetof(struct mgos_config, device), .num_desc = 5},
     {.type = CONF_TYPE_STRING, .key = "id", .offset = offsetof(struct mgos_config, device.id)},
     {.type = CONF_TYPE_STRING, .key = "license", .offset = offsetof(struct mgos_config, device.license)},
@@ -40,26 +40,71 @@ static const struct mgos_conf_entry mgos_config_schema_[] = {
     {.type = CONF_TYPE_STRING, .key = "conf_acl", .offset = offsetof(struct mgos_config, conf_acl)},
     {.type = CONF_TYPE_OBJECT, .key = "mjs", .offset = offsetof(struct mgos_config, mjs), .num_desc = 1},
     {.type = CONF_TYPE_BOOL, .key = "generate_jsc", .offset = offsetof(struct mgos_config, mjs.generate_jsc)},
-    {.type = CONF_TYPE_OBJECT, .key = "rpc", .offset = offsetof(struct mgos_config, rpc), .num_desc = 17},
+    {.type = CONF_TYPE_OBJECT, .key = "mqtt", .offset = offsetof(struct mgos_config, mqtt), .num_desc = 23},
+    {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, mqtt.enable)},
+    {.type = CONF_TYPE_STRING, .key = "server", .offset = offsetof(struct mgos_config, mqtt.server)},
+    {.type = CONF_TYPE_STRING, .key = "client_id", .offset = offsetof(struct mgos_config, mqtt.client_id)},
+    {.type = CONF_TYPE_STRING, .key = "user", .offset = offsetof(struct mgos_config, mqtt.user)},
+    {.type = CONF_TYPE_STRING, .key = "pass", .offset = offsetof(struct mgos_config, mqtt.pass)},
+    {.type = CONF_TYPE_DOUBLE, .key = "reconnect_timeout_min", .offset = offsetof(struct mgos_config, mqtt.reconnect_timeout_min)},
+    {.type = CONF_TYPE_DOUBLE, .key = "reconnect_timeout_max", .offset = offsetof(struct mgos_config, mqtt.reconnect_timeout_max)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_cert", .offset = offsetof(struct mgos_config, mqtt.ssl_cert)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_key", .offset = offsetof(struct mgos_config, mqtt.ssl_key)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_ca_cert", .offset = offsetof(struct mgos_config, mqtt.ssl_ca_cert)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_cipher_suites", .offset = offsetof(struct mgos_config, mqtt.ssl_cipher_suites)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_psk_identity", .offset = offsetof(struct mgos_config, mqtt.ssl_psk_identity)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_psk_key", .offset = offsetof(struct mgos_config, mqtt.ssl_psk_key)},
+    {.type = CONF_TYPE_BOOL, .key = "clean_session", .offset = offsetof(struct mgos_config, mqtt.clean_session)},
+    {.type = CONF_TYPE_INT, .key = "keep_alive", .offset = offsetof(struct mgos_config, mqtt.keep_alive)},
+    {.type = CONF_TYPE_STRING, .key = "will_topic", .offset = offsetof(struct mgos_config, mqtt.will_topic)},
+    {.type = CONF_TYPE_STRING, .key = "will_message", .offset = offsetof(struct mgos_config, mqtt.will_message)},
+    {.type = CONF_TYPE_BOOL, .key = "will_retain", .offset = offsetof(struct mgos_config, mqtt.will_retain)},
+    {.type = CONF_TYPE_INT, .key = "max_qos", .offset = offsetof(struct mgos_config, mqtt.max_qos)},
+    {.type = CONF_TYPE_INT, .key = "recv_mbuf_limit", .offset = offsetof(struct mgos_config, mqtt.recv_mbuf_limit)},
+    {.type = CONF_TYPE_BOOL, .key = "require_time", .offset = offsetof(struct mgos_config, mqtt.require_time)},
+    {.type = CONF_TYPE_BOOL, .key = "cloud_events", .offset = offsetof(struct mgos_config, mqtt.cloud_events)},
+    {.type = CONF_TYPE_INT, .key = "max_queue_length", .offset = offsetof(struct mgos_config, mqtt.max_queue_length)},
+    {.type = CONF_TYPE_OBJECT, .key = "mqtt1", .offset = offsetof(struct mgos_config, mqtt1), .num_desc = 23},
+    {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, mqtt1.enable)},
+    {.type = CONF_TYPE_STRING, .key = "server", .offset = offsetof(struct mgos_config, mqtt1.server)},
+    {.type = CONF_TYPE_STRING, .key = "client_id", .offset = offsetof(struct mgos_config, mqtt1.client_id)},
+    {.type = CONF_TYPE_STRING, .key = "user", .offset = offsetof(struct mgos_config, mqtt1.user)},
+    {.type = CONF_TYPE_STRING, .key = "pass", .offset = offsetof(struct mgos_config, mqtt1.pass)},
+    {.type = CONF_TYPE_DOUBLE, .key = "reconnect_timeout_min", .offset = offsetof(struct mgos_config, mqtt1.reconnect_timeout_min)},
+    {.type = CONF_TYPE_DOUBLE, .key = "reconnect_timeout_max", .offset = offsetof(struct mgos_config, mqtt1.reconnect_timeout_max)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_cert", .offset = offsetof(struct mgos_config, mqtt1.ssl_cert)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_key", .offset = offsetof(struct mgos_config, mqtt1.ssl_key)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_ca_cert", .offset = offsetof(struct mgos_config, mqtt1.ssl_ca_cert)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_cipher_suites", .offset = offsetof(struct mgos_config, mqtt1.ssl_cipher_suites)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_psk_identity", .offset = offsetof(struct mgos_config, mqtt1.ssl_psk_identity)},
+    {.type = CONF_TYPE_STRING, .key = "ssl_psk_key", .offset = offsetof(struct mgos_config, mqtt1.ssl_psk_key)},
+    {.type = CONF_TYPE_BOOL, .key = "clean_session", .offset = offsetof(struct mgos_config, mqtt1.clean_session)},
+    {.type = CONF_TYPE_INT, .key = "keep_alive", .offset = offsetof(struct mgos_config, mqtt1.keep_alive)},
+    {.type = CONF_TYPE_STRING, .key = "will_topic", .offset = offsetof(struct mgos_config, mqtt1.will_topic)},
+    {.type = CONF_TYPE_STRING, .key = "will_message", .offset = offsetof(struct mgos_config, mqtt1.will_message)},
+    {.type = CONF_TYPE_BOOL, .key = "will_retain", .offset = offsetof(struct mgos_config, mqtt1.will_retain)},
+    {.type = CONF_TYPE_INT, .key = "max_qos", .offset = offsetof(struct mgos_config, mqtt1.max_qos)},
+    {.type = CONF_TYPE_INT, .key = "recv_mbuf_limit", .offset = offsetof(struct mgos_config, mqtt1.recv_mbuf_limit)},
+    {.type = CONF_TYPE_BOOL, .key = "require_time", .offset = offsetof(struct mgos_config, mqtt1.require_time)},
+    {.type = CONF_TYPE_BOOL, .key = "cloud_events", .offset = offsetof(struct mgos_config, mqtt1.cloud_events)},
+    {.type = CONF_TYPE_INT, .key = "max_queue_length", .offset = offsetof(struct mgos_config, mqtt1.max_queue_length)},
+    {.type = CONF_TYPE_OBJECT, .key = "rpc", .offset = offsetof(struct mgos_config, rpc), .num_desc = 14},
     {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, rpc.enable)},
     {.type = CONF_TYPE_BOOL, .key = "http_enable", .offset = offsetof(struct mgos_config, rpc.http_enable)},
     {.type = CONF_TYPE_BOOL, .key = "service_sys_enable", .offset = offsetof(struct mgos_config, rpc.service_sys_enable)},
     {.type = CONF_TYPE_INT, .key = "max_frame_size", .offset = offsetof(struct mgos_config, rpc.max_frame_size)},
     {.type = CONF_TYPE_INT, .key = "max_queue_length", .offset = offsetof(struct mgos_config, rpc.max_queue_length)},
-    {.type = CONF_TYPE_INT, .key = "max_non_persistent_channels", .offset = offsetof(struct mgos_config, rpc.max_non_persistent_channels)},
     {.type = CONF_TYPE_INT, .key = "default_out_channel_idle_close_timeout", .offset = offsetof(struct mgos_config, rpc.default_out_channel_idle_close_timeout)},
-    {.type = CONF_TYPE_STRING, .key = "acl", .offset = offsetof(struct mgos_config, rpc.acl)},
     {.type = CONF_TYPE_STRING, .key = "acl_file", .offset = offsetof(struct mgos_config, rpc.acl_file)},
     {.type = CONF_TYPE_STRING, .key = "auth_domain", .offset = offsetof(struct mgos_config, rpc.auth_domain)},
     {.type = CONF_TYPE_STRING, .key = "auth_file", .offset = offsetof(struct mgos_config, rpc.auth_file)},
-    {.type = CONF_TYPE_INT, .key = "auth_algo", .offset = offsetof(struct mgos_config, rpc.auth_algo)},
     {.type = CONF_TYPE_OBJECT, .key = "uart", .offset = offsetof(struct mgos_config, rpc.uart), .num_desc = 4},
     {.type = CONF_TYPE_INT, .key = "uart_no", .offset = offsetof(struct mgos_config, rpc.uart.uart_no)},
     {.type = CONF_TYPE_INT, .key = "baud_rate", .offset = offsetof(struct mgos_config, rpc.uart.baud_rate)},
     {.type = CONF_TYPE_INT, .key = "fc_type", .offset = offsetof(struct mgos_config, rpc.uart.fc_type)},
     {.type = CONF_TYPE_STRING, .key = "dst", .offset = offsetof(struct mgos_config, rpc.uart.dst)},
-    {.type = CONF_TYPE_OBJECT, .key = "wifi", .offset = offsetof(struct mgos_config, wifi), .num_desc = 76},
-    {.type = CONF_TYPE_OBJECT, .key = "ap", .offset = offsetof(struct mgos_config, wifi.ap), .num_desc = 14},
+    {.type = CONF_TYPE_OBJECT, .key = "wifi", .offset = offsetof(struct mgos_config, wifi), .num_desc = 61},
+    {.type = CONF_TYPE_OBJECT, .key = "ap", .offset = offsetof(struct mgos_config, wifi.ap), .num_desc = 15},
     {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, wifi.ap.enable)},
     {.type = CONF_TYPE_STRING, .key = "ssid", .offset = offsetof(struct mgos_config, wifi.ap.ssid)},
     {.type = CONF_TYPE_STRING, .key = "pass", .offset = offsetof(struct mgos_config, wifi.ap.pass)},
@@ -74,14 +119,11 @@ static const struct mgos_conf_entry mgos_config_schema_[] = {
     {.type = CONF_TYPE_INT, .key = "trigger_on_gpio", .offset = offsetof(struct mgos_config, wifi.ap.trigger_on_gpio)},
     {.type = CONF_TYPE_INT, .key = "disable_after", .offset = offsetof(struct mgos_config, wifi.ap.disable_after)},
     {.type = CONF_TYPE_STRING, .key = "hostname", .offset = offsetof(struct mgos_config, wifi.ap.hostname)},
-    {.type = CONF_TYPE_OBJECT, .key = "sta", .offset = offsetof(struct mgos_config, wifi.sta), .num_desc = 17},
+    {.type = CONF_TYPE_BOOL, .key = "keep_enabled", .offset = offsetof(struct mgos_config, wifi.ap.keep_enabled)},
+    {.type = CONF_TYPE_OBJECT, .key = "sta", .offset = offsetof(struct mgos_config, wifi.sta), .num_desc = 13},
     {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, wifi.sta.enable)},
     {.type = CONF_TYPE_STRING, .key = "ssid", .offset = offsetof(struct mgos_config, wifi.sta.ssid)},
     {.type = CONF_TYPE_STRING, .key = "pass", .offset = offsetof(struct mgos_config, wifi.sta.pass)},
-    {.type = CONF_TYPE_STRING, .key = "bssid", .offset = offsetof(struct mgos_config, wifi.sta.bssid)},
-    {.type = CONF_TYPE_INT, .key = "channel", .offset = offsetof(struct mgos_config, wifi.sta.channel)},
-    {.type = CONF_TYPE_STRING, .key = "last_bssid", .offset = offsetof(struct mgos_config, wifi.sta.last_bssid)},
-    {.type = CONF_TYPE_INT, .key = "last_channel", .offset = offsetof(struct mgos_config, wifi.sta.last_channel)},
     {.type = CONF_TYPE_STRING, .key = "user", .offset = offsetof(struct mgos_config, wifi.sta.user)},
     {.type = CONF_TYPE_STRING, .key = "anon_identity", .offset = offsetof(struct mgos_config, wifi.sta.anon_identity)},
     {.type = CONF_TYPE_STRING, .key = "cert", .offset = offsetof(struct mgos_config, wifi.sta.cert)},
@@ -92,14 +134,10 @@ static const struct mgos_conf_entry mgos_config_schema_[] = {
     {.type = CONF_TYPE_STRING, .key = "gw", .offset = offsetof(struct mgos_config, wifi.sta.gw)},
     {.type = CONF_TYPE_STRING, .key = "nameserver", .offset = offsetof(struct mgos_config, wifi.sta.nameserver)},
     {.type = CONF_TYPE_STRING, .key = "dhcp_hostname", .offset = offsetof(struct mgos_config, wifi.sta.dhcp_hostname)},
-    {.type = CONF_TYPE_OBJECT, .key = "sta1", .offset = offsetof(struct mgos_config, wifi.sta1), .num_desc = 17},
+    {.type = CONF_TYPE_OBJECT, .key = "sta1", .offset = offsetof(struct mgos_config, wifi.sta1), .num_desc = 13},
     {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, wifi.sta1.enable)},
     {.type = CONF_TYPE_STRING, .key = "ssid", .offset = offsetof(struct mgos_config, wifi.sta1.ssid)},
     {.type = CONF_TYPE_STRING, .key = "pass", .offset = offsetof(struct mgos_config, wifi.sta1.pass)},
-    {.type = CONF_TYPE_STRING, .key = "bssid", .offset = offsetof(struct mgos_config, wifi.sta1.bssid)},
-    {.type = CONF_TYPE_INT, .key = "channel", .offset = offsetof(struct mgos_config, wifi.sta1.channel)},
-    {.type = CONF_TYPE_STRING, .key = "last_bssid", .offset = offsetof(struct mgos_config, wifi.sta1.last_bssid)},
-    {.type = CONF_TYPE_INT, .key = "last_channel", .offset = offsetof(struct mgos_config, wifi.sta1.last_channel)},
     {.type = CONF_TYPE_STRING, .key = "user", .offset = offsetof(struct mgos_config, wifi.sta1.user)},
     {.type = CONF_TYPE_STRING, .key = "anon_identity", .offset = offsetof(struct mgos_config, wifi.sta1.anon_identity)},
     {.type = CONF_TYPE_STRING, .key = "cert", .offset = offsetof(struct mgos_config, wifi.sta1.cert)},
@@ -110,14 +148,10 @@ static const struct mgos_conf_entry mgos_config_schema_[] = {
     {.type = CONF_TYPE_STRING, .key = "gw", .offset = offsetof(struct mgos_config, wifi.sta1.gw)},
     {.type = CONF_TYPE_STRING, .key = "nameserver", .offset = offsetof(struct mgos_config, wifi.sta1.nameserver)},
     {.type = CONF_TYPE_STRING, .key = "dhcp_hostname", .offset = offsetof(struct mgos_config, wifi.sta1.dhcp_hostname)},
-    {.type = CONF_TYPE_OBJECT, .key = "sta2", .offset = offsetof(struct mgos_config, wifi.sta2), .num_desc = 17},
+    {.type = CONF_TYPE_OBJECT, .key = "sta2", .offset = offsetof(struct mgos_config, wifi.sta2), .num_desc = 13},
     {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, wifi.sta2.enable)},
     {.type = CONF_TYPE_STRING, .key = "ssid", .offset = offsetof(struct mgos_config, wifi.sta2.ssid)},
     {.type = CONF_TYPE_STRING, .key = "pass", .offset = offsetof(struct mgos_config, wifi.sta2.pass)},
-    {.type = CONF_TYPE_STRING, .key = "bssid", .offset = offsetof(struct mgos_config, wifi.sta2.bssid)},
-    {.type = CONF_TYPE_INT, .key = "channel", .offset = offsetof(struct mgos_config, wifi.sta2.channel)},
-    {.type = CONF_TYPE_STRING, .key = "last_bssid", .offset = offsetof(struct mgos_config, wifi.sta2.last_bssid)},
-    {.type = CONF_TYPE_INT, .key = "last_channel", .offset = offsetof(struct mgos_config, wifi.sta2.last_channel)},
     {.type = CONF_TYPE_STRING, .key = "user", .offset = offsetof(struct mgos_config, wifi.sta2.user)},
     {.type = CONF_TYPE_STRING, .key = "anon_identity", .offset = offsetof(struct mgos_config, wifi.sta2.anon_identity)},
     {.type = CONF_TYPE_STRING, .key = "cert", .offset = offsetof(struct mgos_config, wifi.sta2.cert)},
@@ -128,13 +162,9 @@ static const struct mgos_conf_entry mgos_config_schema_[] = {
     {.type = CONF_TYPE_STRING, .key = "gw", .offset = offsetof(struct mgos_config, wifi.sta2.gw)},
     {.type = CONF_TYPE_STRING, .key = "nameserver", .offset = offsetof(struct mgos_config, wifi.sta2.nameserver)},
     {.type = CONF_TYPE_STRING, .key = "dhcp_hostname", .offset = offsetof(struct mgos_config, wifi.sta2.dhcp_hostname)},
-    {.type = CONF_TYPE_INT, .key = "sta_rssi_thr", .offset = offsetof(struct mgos_config, wifi.sta_rssi_thr)},
+    {.type = CONF_TYPE_INT, .key = "sta_cfg_idx", .offset = offsetof(struct mgos_config, wifi.sta_cfg_idx)},
     {.type = CONF_TYPE_INT, .key = "sta_connect_timeout", .offset = offsetof(struct mgos_config, wifi.sta_connect_timeout)},
-    {.type = CONF_TYPE_INT, .key = "sta_roam_rssi_thr", .offset = offsetof(struct mgos_config, wifi.sta_roam_rssi_thr)},
-    {.type = CONF_TYPE_INT, .key = "sta_roam_interval", .offset = offsetof(struct mgos_config, wifi.sta_roam_interval)},
-    {.type = CONF_TYPE_INT, .key = "tx_rate_limit_11b", .offset = offsetof(struct mgos_config, wifi.tx_rate_limit_11b)},
-    {.type = CONF_TYPE_INT, .key = "tx_rate_limit_11g", .offset = offsetof(struct mgos_config, wifi.tx_rate_limit_11g)},
-    {.type = CONF_TYPE_INT, .key = "tx_rate_limit_11n", .offset = offsetof(struct mgos_config, wifi.tx_rate_limit_11n)},
+    {.type = CONF_TYPE_BOOL, .key = "sta_all_chan_scan", .offset = offsetof(struct mgos_config, wifi.sta_all_chan_scan)},
     {.type = CONF_TYPE_OBJECT, .key = "board", .offset = offsetof(struct mgos_config, board), .num_desc = 18},
     {.type = CONF_TYPE_OBJECT, .key = "led1", .offset = offsetof(struct mgos_config, board.led1), .num_desc = 2},
     {.type = CONF_TYPE_INT, .key = "pin", .offset = offsetof(struct mgos_config, board.led1.pin)},
@@ -172,19 +202,13 @@ void mgos_config_debug_set_defaults(struct mgos_config_debug *cfg) {
   cfg->stderr_uart = 0;
   cfg->factory_reset_gpio = -1;
   cfg->mg_mgr_hexdump_file = NULL;
-}
-bool mgos_config_debug_parse_f(const char *fname, struct mgos_config_debug *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_debug_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
+  cfg->stdout_topic = NULL;
+  cfg->stderr_topic = NULL;
 }
 
 /* struct mgos_config_device */
 const struct mgos_conf_entry *mgos_config_device_get_schema(void) {
-  return &mgos_config_schema_[12];
+  return &mgos_config_schema_[14];
 }
 
 void mgos_config_device_set_defaults(struct mgos_config_device *cfg) {
@@ -194,18 +218,10 @@ void mgos_config_device_set_defaults(struct mgos_config_device *cfg) {
   cfg->public_key = NULL;
   cfg->sn = NULL;
 }
-bool mgos_config_device_parse_f(const char *fname, struct mgos_config_device *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_device_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_sys */
 const struct mgos_conf_entry *mgos_config_sys_get_schema(void) {
-  return &mgos_config_schema_[18];
+  return &mgos_config_schema_[20];
 }
 
 void mgos_config_sys_set_defaults(struct mgos_config_sys *cfg) {
@@ -213,35 +229,81 @@ void mgos_config_sys_set_defaults(struct mgos_config_sys *cfg) {
   cfg->wdt_timeout = 30;
   cfg->pref_ota_lib = NULL;
 }
-bool mgos_config_sys_parse_f(const char *fname, struct mgos_config_sys *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_sys_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_mjs */
 const struct mgos_conf_entry *mgos_config_mjs_get_schema(void) {
-  return &mgos_config_schema_[23];
+  return &mgos_config_schema_[25];
 }
 
 void mgos_config_mjs_set_defaults(struct mgos_config_mjs *cfg) {
   cfg->generate_jsc = true;
 }
-bool mgos_config_mjs_parse_f(const char *fname, struct mgos_config_mjs *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_mjs_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
+
+/* struct mgos_config_mqtt */
+const struct mgos_conf_entry *mgos_config_mqtt_get_schema(void) {
+  return &mgos_config_schema_[51];
+}
+
+void mgos_config_mqtt_set_defaults(struct mgos_config_mqtt *cfg) {
+  cfg->enable = true;
+  cfg->server = "test.mosquitto.org";
+  cfg->client_id = NULL;
+  cfg->user = NULL;
+  cfg->pass = NULL;
+  cfg->reconnect_timeout_min = 2.0;
+  cfg->reconnect_timeout_max = 60.0;
+  cfg->ssl_cert = NULL;
+  cfg->ssl_key = NULL;
+  cfg->ssl_ca_cert = NULL;
+  cfg->ssl_cipher_suites = NULL;
+  cfg->ssl_psk_identity = NULL;
+  cfg->ssl_psk_key = NULL;
+  cfg->clean_session = true;
+  cfg->keep_alive = 60;
+  cfg->will_topic = NULL;
+  cfg->will_message = NULL;
+  cfg->will_retain = false;
+  cfg->max_qos = 2;
+  cfg->recv_mbuf_limit = 3072;
+  cfg->require_time = false;
+  cfg->cloud_events = true;
+  cfg->max_queue_length = 5;
+}
+
+/* struct mgos_config_mqtt */
+const struct mgos_conf_entry *mgos_config_mqtt1_get_schema(void) {
+  return &mgos_config_schema_[51];
+}
+
+void mgos_config_mqtt1_set_defaults(struct mgos_config_mqtt *cfg) {
+  cfg->enable = false;
+  cfg->server = NULL;
+  cfg->client_id = NULL;
+  cfg->user = NULL;
+  cfg->pass = NULL;
+  cfg->reconnect_timeout_min = 2.0;
+  cfg->reconnect_timeout_max = 60.0;
+  cfg->ssl_cert = NULL;
+  cfg->ssl_key = NULL;
+  cfg->ssl_ca_cert = NULL;
+  cfg->ssl_cipher_suites = NULL;
+  cfg->ssl_psk_identity = NULL;
+  cfg->ssl_psk_key = NULL;
+  cfg->clean_session = true;
+  cfg->keep_alive = 60;
+  cfg->will_topic = NULL;
+  cfg->will_message = NULL;
+  cfg->will_retain = false;
+  cfg->max_qos = 2;
+  cfg->recv_mbuf_limit = 3072;
+  cfg->require_time = false;
+  cfg->cloud_events = true;
+  cfg->max_queue_length = 5;
 }
 
 /* struct mgos_config_rpc_uart */
 const struct mgos_conf_entry *mgos_config_rpc_uart_get_schema(void) {
-  return &mgos_config_schema_[38];
+  return &mgos_config_schema_[85];
 }
 
 void mgos_config_rpc_uart_set_defaults(struct mgos_config_rpc_uart *cfg) {
@@ -250,18 +312,10 @@ void mgos_config_rpc_uart_set_defaults(struct mgos_config_rpc_uart *cfg) {
   cfg->fc_type = 2;
   cfg->dst = NULL;
 }
-bool mgos_config_rpc_uart_parse_f(const char *fname, struct mgos_config_rpc_uart *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_rpc_uart_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_rpc */
 const struct mgos_conf_entry *mgos_config_rpc_get_schema(void) {
-  return &mgos_config_schema_[25];
+  return &mgos_config_schema_[75];
 }
 
 void mgos_config_rpc_set_defaults(struct mgos_config_rpc *cfg) {
@@ -270,27 +324,16 @@ void mgos_config_rpc_set_defaults(struct mgos_config_rpc *cfg) {
   cfg->service_sys_enable = true;
   cfg->max_frame_size = 4096;
   cfg->max_queue_length = 25;
-  cfg->max_non_persistent_channels = 20;
   cfg->default_out_channel_idle_close_timeout = 10;
-  cfg->acl = NULL;
   cfg->acl_file = NULL;
   cfg->auth_domain = "RPC";
   cfg->auth_file = NULL;
-  cfg->auth_algo = 0;
   mgos_config_rpc_uart_set_defaults(&cfg->uart);
-}
-bool mgos_config_rpc_parse_f(const char *fname, struct mgos_config_rpc *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_rpc_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
 }
 
 /* struct mgos_config_wifi_ap */
 const struct mgos_conf_entry *mgos_config_wifi_ap_get_schema(void) {
-  return &mgos_config_schema_[44];
+  return &mgos_config_schema_[91];
 }
 
 void mgos_config_wifi_ap_set_defaults(struct mgos_config_wifi_ap *cfg) {
@@ -308,29 +351,18 @@ void mgos_config_wifi_ap_set_defaults(struct mgos_config_wifi_ap *cfg) {
   cfg->trigger_on_gpio = -1;
   cfg->disable_after = 0;
   cfg->hostname = NULL;
-}
-bool mgos_config_wifi_ap_parse_f(const char *fname, struct mgos_config_wifi_ap *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_wifi_ap_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
+  cfg->keep_enabled = true;
 }
 
 /* struct mgos_config_wifi_sta */
 const struct mgos_conf_entry *mgos_config_wifi_sta_get_schema(void) {
-  return &mgos_config_schema_[95];
+  return &mgos_config_schema_[135];
 }
 
 void mgos_config_wifi_sta_set_defaults(struct mgos_config_wifi_sta *cfg) {
   cfg->enable = false;
   cfg->ssid = NULL;
   cfg->pass = NULL;
-  cfg->bssid = NULL;
-  cfg->channel = 0;
-  cfg->last_bssid = NULL;
-  cfg->last_channel = 0;
   cfg->user = NULL;
   cfg->anon_identity = NULL;
   cfg->cert = NULL;
@@ -342,28 +374,16 @@ void mgos_config_wifi_sta_set_defaults(struct mgos_config_wifi_sta *cfg) {
   cfg->nameserver = NULL;
   cfg->dhcp_hostname = NULL;
 }
-bool mgos_config_wifi_sta_parse_f(const char *fname, struct mgos_config_wifi_sta *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_wifi_sta_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_wifi_sta */
 const struct mgos_conf_entry *mgos_config_wifi_sta1_get_schema(void) {
-  return &mgos_config_schema_[95];
+  return &mgos_config_schema_[135];
 }
 
 void mgos_config_wifi_sta1_set_defaults(struct mgos_config_wifi_sta *cfg) {
   cfg->enable = false;
   cfg->ssid = NULL;
   cfg->pass = NULL;
-  cfg->bssid = NULL;
-  cfg->channel = 0;
-  cfg->last_bssid = NULL;
-  cfg->last_channel = 0;
   cfg->user = NULL;
   cfg->anon_identity = NULL;
   cfg->cert = NULL;
@@ -375,28 +395,16 @@ void mgos_config_wifi_sta1_set_defaults(struct mgos_config_wifi_sta *cfg) {
   cfg->nameserver = NULL;
   cfg->dhcp_hostname = NULL;
 }
-bool mgos_config_wifi_sta1_parse_f(const char *fname, struct mgos_config_wifi_sta *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_wifi_sta1_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_wifi_sta */
 const struct mgos_conf_entry *mgos_config_wifi_sta2_get_schema(void) {
-  return &mgos_config_schema_[95];
+  return &mgos_config_schema_[135];
 }
 
 void mgos_config_wifi_sta2_set_defaults(struct mgos_config_wifi_sta *cfg) {
   cfg->enable = false;
   cfg->ssid = NULL;
   cfg->pass = NULL;
-  cfg->bssid = NULL;
-  cfg->channel = 0;
-  cfg->last_bssid = NULL;
-  cfg->last_channel = 0;
   cfg->user = NULL;
   cfg->anon_identity = NULL;
   cfg->cert = NULL;
@@ -408,18 +416,10 @@ void mgos_config_wifi_sta2_set_defaults(struct mgos_config_wifi_sta *cfg) {
   cfg->nameserver = NULL;
   cfg->dhcp_hostname = NULL;
 }
-bool mgos_config_wifi_sta2_parse_f(const char *fname, struct mgos_config_wifi_sta *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_wifi_sta2_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_wifi */
 const struct mgos_conf_entry *mgos_config_wifi_get_schema(void) {
-  return &mgos_config_schema_[43];
+  return &mgos_config_schema_[90];
 }
 
 void mgos_config_wifi_set_defaults(struct mgos_config_wifi *cfg) {
@@ -427,134 +427,74 @@ void mgos_config_wifi_set_defaults(struct mgos_config_wifi *cfg) {
   mgos_config_wifi_sta_set_defaults(&cfg->sta);
   mgos_config_wifi_sta1_set_defaults(&cfg->sta1);
   mgos_config_wifi_sta2_set_defaults(&cfg->sta2);
-  cfg->sta_rssi_thr = -95;
-  cfg->sta_connect_timeout = 15;
-  cfg->sta_roam_rssi_thr = -80;
-  cfg->sta_roam_interval = 0;
-  cfg->tx_rate_limit_11b = -1;
-  cfg->tx_rate_limit_11g = -1;
-  cfg->tx_rate_limit_11n = -1;
-}
-bool mgos_config_wifi_parse_f(const char *fname, struct mgos_config_wifi *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_wifi_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
+  cfg->sta_cfg_idx = 0;
+  cfg->sta_connect_timeout = 30;
+  cfg->sta_all_chan_scan = true;
 }
 
 /* struct mgos_config_board_led1 */
 const struct mgos_conf_entry *mgos_config_board_led1_get_schema(void) {
-  return &mgos_config_schema_[121];
+  return &mgos_config_schema_[153];
 }
 
 void mgos_config_board_led1_set_defaults(struct mgos_config_board_led1 *cfg) {
   cfg->pin = 2;
   cfg->active_high = false;
 }
-bool mgos_config_board_led1_parse_f(const char *fname, struct mgos_config_board_led1 *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_board_led1_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_board_led2 */
 const struct mgos_conf_entry *mgos_config_board_led2_get_schema(void) {
-  return &mgos_config_schema_[124];
+  return &mgos_config_schema_[156];
 }
 
 void mgos_config_board_led2_set_defaults(struct mgos_config_board_led2 *cfg) {
   cfg->pin = -1;
   cfg->active_high = true;
 }
-bool mgos_config_board_led2_parse_f(const char *fname, struct mgos_config_board_led2 *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_board_led2_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_board_led3 */
 const struct mgos_conf_entry *mgos_config_board_led3_get_schema(void) {
-  return &mgos_config_schema_[127];
+  return &mgos_config_schema_[159];
 }
 
 void mgos_config_board_led3_set_defaults(struct mgos_config_board_led3 *cfg) {
   cfg->pin = -1;
   cfg->active_high = true;
 }
-bool mgos_config_board_led3_parse_f(const char *fname, struct mgos_config_board_led3 *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_board_led3_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_board_btn1 */
 const struct mgos_conf_entry *mgos_config_board_btn1_get_schema(void) {
-  return &mgos_config_schema_[130];
+  return &mgos_config_schema_[162];
 }
 
 void mgos_config_board_btn1_set_defaults(struct mgos_config_board_btn1 *cfg) {
   cfg->pin = 0;
   cfg->pull_up = true;
 }
-bool mgos_config_board_btn1_parse_f(const char *fname, struct mgos_config_board_btn1 *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_board_btn1_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_board_btn2 */
 const struct mgos_conf_entry *mgos_config_board_btn2_get_schema(void) {
-  return &mgos_config_schema_[133];
+  return &mgos_config_schema_[165];
 }
 
 void mgos_config_board_btn2_set_defaults(struct mgos_config_board_btn2 *cfg) {
   cfg->pin = -1;
   cfg->pull_up = false;
 }
-bool mgos_config_board_btn2_parse_f(const char *fname, struct mgos_config_board_btn2 *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_board_btn2_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_board_btn3 */
 const struct mgos_conf_entry *mgos_config_board_btn3_get_schema(void) {
-  return &mgos_config_schema_[136];
+  return &mgos_config_schema_[168];
 }
 
 void mgos_config_board_btn3_set_defaults(struct mgos_config_board_btn3 *cfg) {
   cfg->pin = -1;
   cfg->pull_up = false;
 }
-bool mgos_config_board_btn3_parse_f(const char *fname, struct mgos_config_board_btn3 *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_board_btn3_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
-}
 
 /* struct mgos_config_board */
 const struct mgos_conf_entry *mgos_config_board_get_schema(void) {
-  return &mgos_config_schema_[120];
+  return &mgos_config_schema_[152];
 }
 
 void mgos_config_board_set_defaults(struct mgos_config_board *cfg) {
@@ -564,14 +504,6 @@ void mgos_config_board_set_defaults(struct mgos_config_board *cfg) {
   mgos_config_board_btn1_set_defaults(&cfg->btn1);
   mgos_config_board_btn2_set_defaults(&cfg->btn2);
   mgos_config_board_btn3_set_defaults(&cfg->btn3);
-}
-bool mgos_config_board_parse_f(const char *fname, struct mgos_config_board *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_board_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
 }
 
 /* struct mgos_config */
@@ -585,17 +517,11 @@ void mgos_config_set_defaults(struct mgos_config *cfg) {
   mgos_config_sys_set_defaults(&cfg->sys);
   cfg->conf_acl = "*";
   mgos_config_mjs_set_defaults(&cfg->mjs);
+  mgos_config_mqtt_set_defaults(&cfg->mqtt);
+  mgos_config_mqtt1_set_defaults(&cfg->mqtt1);
   mgos_config_rpc_set_defaults(&cfg->rpc);
   mgos_config_wifi_set_defaults(&cfg->wifi);
   mgos_config_board_set_defaults(&cfg->board);
-}
-bool mgos_config_parse_f(const char *fname, struct mgos_config *cfg) {
-  size_t len;
-  char *data = cs_read_file(fname, &len);
-  if (data == NULL) return false;
-  bool res = mgos_config_parse(mg_mk_str_n(data, len), cfg);
-  free(data);
-  return res;
 }
 
 /* Global instance */
@@ -656,6 +582,16 @@ const char * mgos_config_get_debug_mg_mgr_hexdump_file(const struct mgos_config 
 const char * mgos_config_get_default_debug_mg_mgr_hexdump_file(void) { return NULL; }
 void mgos_config_set_debug_mg_mgr_hexdump_file(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->debug.mg_mgr_hexdump_file, v); }
 
+/* debug.stdout_topic */
+const char * mgos_config_get_debug_stdout_topic(const struct mgos_config *cfg) { return cfg->debug.stdout_topic; }
+const char * mgos_config_get_default_debug_stdout_topic(void) { return NULL; }
+void mgos_config_set_debug_stdout_topic(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->debug.stdout_topic, v); }
+
+/* debug.stderr_topic */
+const char * mgos_config_get_debug_stderr_topic(const struct mgos_config *cfg) { return cfg->debug.stderr_topic; }
+const char * mgos_config_get_default_debug_stderr_topic(void) { return NULL; }
+void mgos_config_set_debug_stderr_topic(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->debug.stderr_topic, v); }
+
 /* device */
 const struct mgos_config_device *mgos_config_get_device(const struct mgos_config *cfg) { return &cfg->device; }
 
@@ -715,6 +651,242 @@ int mgos_config_get_mjs_generate_jsc(const struct mgos_config *cfg) { return cfg
 int mgos_config_get_default_mjs_generate_jsc(void) { return true; }
 void mgos_config_set_mjs_generate_jsc(struct mgos_config *cfg, int v) { cfg->mjs.generate_jsc = v; }
 
+/* mqtt */
+const struct mgos_config_mqtt *mgos_config_get_mqtt(const struct mgos_config *cfg) { return &cfg->mqtt; }
+
+/* mqtt.enable */
+int mgos_config_get_mqtt_enable(const struct mgos_config *cfg) { return cfg->mqtt.enable; }
+int mgos_config_get_default_mqtt_enable(void) { return true; }
+void mgos_config_set_mqtt_enable(struct mgos_config *cfg, int v) { cfg->mqtt.enable = v; }
+
+/* mqtt.server */
+const char * mgos_config_get_mqtt_server(const struct mgos_config *cfg) { return cfg->mqtt.server; }
+const char * mgos_config_get_default_mqtt_server(void) { return "test.mosquitto.org"; }
+void mgos_config_set_mqtt_server(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.server, v); }
+
+/* mqtt.client_id */
+const char * mgos_config_get_mqtt_client_id(const struct mgos_config *cfg) { return cfg->mqtt.client_id; }
+const char * mgos_config_get_default_mqtt_client_id(void) { return NULL; }
+void mgos_config_set_mqtt_client_id(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.client_id, v); }
+
+/* mqtt.user */
+const char * mgos_config_get_mqtt_user(const struct mgos_config *cfg) { return cfg->mqtt.user; }
+const char * mgos_config_get_default_mqtt_user(void) { return NULL; }
+void mgos_config_set_mqtt_user(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.user, v); }
+
+/* mqtt.pass */
+const char * mgos_config_get_mqtt_pass(const struct mgos_config *cfg) { return cfg->mqtt.pass; }
+const char * mgos_config_get_default_mqtt_pass(void) { return NULL; }
+void mgos_config_set_mqtt_pass(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.pass, v); }
+
+/* mqtt.reconnect_timeout_min */
+double mgos_config_get_mqtt_reconnect_timeout_min(const struct mgos_config *cfg) { return cfg->mqtt.reconnect_timeout_min; }
+double mgos_config_get_default_mqtt_reconnect_timeout_min(void) { return 2.0; }
+void mgos_config_set_mqtt_reconnect_timeout_min(struct mgos_config *cfg, double v) { cfg->mqtt.reconnect_timeout_min = v; }
+
+/* mqtt.reconnect_timeout_max */
+double mgos_config_get_mqtt_reconnect_timeout_max(const struct mgos_config *cfg) { return cfg->mqtt.reconnect_timeout_max; }
+double mgos_config_get_default_mqtt_reconnect_timeout_max(void) { return 60.0; }
+void mgos_config_set_mqtt_reconnect_timeout_max(struct mgos_config *cfg, double v) { cfg->mqtt.reconnect_timeout_max = v; }
+
+/* mqtt.ssl_cert */
+const char * mgos_config_get_mqtt_ssl_cert(const struct mgos_config *cfg) { return cfg->mqtt.ssl_cert; }
+const char * mgos_config_get_default_mqtt_ssl_cert(void) { return NULL; }
+void mgos_config_set_mqtt_ssl_cert(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.ssl_cert, v); }
+
+/* mqtt.ssl_key */
+const char * mgos_config_get_mqtt_ssl_key(const struct mgos_config *cfg) { return cfg->mqtt.ssl_key; }
+const char * mgos_config_get_default_mqtt_ssl_key(void) { return NULL; }
+void mgos_config_set_mqtt_ssl_key(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.ssl_key, v); }
+
+/* mqtt.ssl_ca_cert */
+const char * mgos_config_get_mqtt_ssl_ca_cert(const struct mgos_config *cfg) { return cfg->mqtt.ssl_ca_cert; }
+const char * mgos_config_get_default_mqtt_ssl_ca_cert(void) { return NULL; }
+void mgos_config_set_mqtt_ssl_ca_cert(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.ssl_ca_cert, v); }
+
+/* mqtt.ssl_cipher_suites */
+const char * mgos_config_get_mqtt_ssl_cipher_suites(const struct mgos_config *cfg) { return cfg->mqtt.ssl_cipher_suites; }
+const char * mgos_config_get_default_mqtt_ssl_cipher_suites(void) { return NULL; }
+void mgos_config_set_mqtt_ssl_cipher_suites(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.ssl_cipher_suites, v); }
+
+/* mqtt.ssl_psk_identity */
+const char * mgos_config_get_mqtt_ssl_psk_identity(const struct mgos_config *cfg) { return cfg->mqtt.ssl_psk_identity; }
+const char * mgos_config_get_default_mqtt_ssl_psk_identity(void) { return NULL; }
+void mgos_config_set_mqtt_ssl_psk_identity(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.ssl_psk_identity, v); }
+
+/* mqtt.ssl_psk_key */
+const char * mgos_config_get_mqtt_ssl_psk_key(const struct mgos_config *cfg) { return cfg->mqtt.ssl_psk_key; }
+const char * mgos_config_get_default_mqtt_ssl_psk_key(void) { return NULL; }
+void mgos_config_set_mqtt_ssl_psk_key(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.ssl_psk_key, v); }
+
+/* mqtt.clean_session */
+int mgos_config_get_mqtt_clean_session(const struct mgos_config *cfg) { return cfg->mqtt.clean_session; }
+int mgos_config_get_default_mqtt_clean_session(void) { return true; }
+void mgos_config_set_mqtt_clean_session(struct mgos_config *cfg, int v) { cfg->mqtt.clean_session = v; }
+
+/* mqtt.keep_alive */
+int mgos_config_get_mqtt_keep_alive(const struct mgos_config *cfg) { return cfg->mqtt.keep_alive; }
+int mgos_config_get_default_mqtt_keep_alive(void) { return 60; }
+void mgos_config_set_mqtt_keep_alive(struct mgos_config *cfg, int v) { cfg->mqtt.keep_alive = v; }
+
+/* mqtt.will_topic */
+const char * mgos_config_get_mqtt_will_topic(const struct mgos_config *cfg) { return cfg->mqtt.will_topic; }
+const char * mgos_config_get_default_mqtt_will_topic(void) { return NULL; }
+void mgos_config_set_mqtt_will_topic(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.will_topic, v); }
+
+/* mqtt.will_message */
+const char * mgos_config_get_mqtt_will_message(const struct mgos_config *cfg) { return cfg->mqtt.will_message; }
+const char * mgos_config_get_default_mqtt_will_message(void) { return NULL; }
+void mgos_config_set_mqtt_will_message(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt.will_message, v); }
+
+/* mqtt.will_retain */
+int mgos_config_get_mqtt_will_retain(const struct mgos_config *cfg) { return cfg->mqtt.will_retain; }
+int mgos_config_get_default_mqtt_will_retain(void) { return false; }
+void mgos_config_set_mqtt_will_retain(struct mgos_config *cfg, int v) { cfg->mqtt.will_retain = v; }
+
+/* mqtt.max_qos */
+int mgos_config_get_mqtt_max_qos(const struct mgos_config *cfg) { return cfg->mqtt.max_qos; }
+int mgos_config_get_default_mqtt_max_qos(void) { return 2; }
+void mgos_config_set_mqtt_max_qos(struct mgos_config *cfg, int v) { cfg->mqtt.max_qos = v; }
+
+/* mqtt.recv_mbuf_limit */
+int mgos_config_get_mqtt_recv_mbuf_limit(const struct mgos_config *cfg) { return cfg->mqtt.recv_mbuf_limit; }
+int mgos_config_get_default_mqtt_recv_mbuf_limit(void) { return 3072; }
+void mgos_config_set_mqtt_recv_mbuf_limit(struct mgos_config *cfg, int v) { cfg->mqtt.recv_mbuf_limit = v; }
+
+/* mqtt.require_time */
+int mgos_config_get_mqtt_require_time(const struct mgos_config *cfg) { return cfg->mqtt.require_time; }
+int mgos_config_get_default_mqtt_require_time(void) { return false; }
+void mgos_config_set_mqtt_require_time(struct mgos_config *cfg, int v) { cfg->mqtt.require_time = v; }
+
+/* mqtt.cloud_events */
+int mgos_config_get_mqtt_cloud_events(const struct mgos_config *cfg) { return cfg->mqtt.cloud_events; }
+int mgos_config_get_default_mqtt_cloud_events(void) { return true; }
+void mgos_config_set_mqtt_cloud_events(struct mgos_config *cfg, int v) { cfg->mqtt.cloud_events = v; }
+
+/* mqtt.max_queue_length */
+int mgos_config_get_mqtt_max_queue_length(const struct mgos_config *cfg) { return cfg->mqtt.max_queue_length; }
+int mgos_config_get_default_mqtt_max_queue_length(void) { return 5; }
+void mgos_config_set_mqtt_max_queue_length(struct mgos_config *cfg, int v) { cfg->mqtt.max_queue_length = v; }
+
+/* mqtt1 */
+const struct mgos_config_mqtt *mgos_config_get_mqtt1(const struct mgos_config *cfg) { return &cfg->mqtt1; }
+
+/* mqtt1.enable */
+int mgos_config_get_mqtt1_enable(const struct mgos_config *cfg) { return cfg->mqtt1.enable; }
+int mgos_config_get_default_mqtt1_enable(void) { return false; }
+void mgos_config_set_mqtt1_enable(struct mgos_config *cfg, int v) { cfg->mqtt1.enable = v; }
+
+/* mqtt1.server */
+const char * mgos_config_get_mqtt1_server(const struct mgos_config *cfg) { return cfg->mqtt1.server; }
+const char * mgos_config_get_default_mqtt1_server(void) { return NULL; }
+void mgos_config_set_mqtt1_server(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.server, v); }
+
+/* mqtt1.client_id */
+const char * mgos_config_get_mqtt1_client_id(const struct mgos_config *cfg) { return cfg->mqtt1.client_id; }
+const char * mgos_config_get_default_mqtt1_client_id(void) { return NULL; }
+void mgos_config_set_mqtt1_client_id(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.client_id, v); }
+
+/* mqtt1.user */
+const char * mgos_config_get_mqtt1_user(const struct mgos_config *cfg) { return cfg->mqtt1.user; }
+const char * mgos_config_get_default_mqtt1_user(void) { return NULL; }
+void mgos_config_set_mqtt1_user(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.user, v); }
+
+/* mqtt1.pass */
+const char * mgos_config_get_mqtt1_pass(const struct mgos_config *cfg) { return cfg->mqtt1.pass; }
+const char * mgos_config_get_default_mqtt1_pass(void) { return NULL; }
+void mgos_config_set_mqtt1_pass(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.pass, v); }
+
+/* mqtt1.reconnect_timeout_min */
+double mgos_config_get_mqtt1_reconnect_timeout_min(const struct mgos_config *cfg) { return cfg->mqtt1.reconnect_timeout_min; }
+double mgos_config_get_default_mqtt1_reconnect_timeout_min(void) { return 2.0; }
+void mgos_config_set_mqtt1_reconnect_timeout_min(struct mgos_config *cfg, double v) { cfg->mqtt1.reconnect_timeout_min = v; }
+
+/* mqtt1.reconnect_timeout_max */
+double mgos_config_get_mqtt1_reconnect_timeout_max(const struct mgos_config *cfg) { return cfg->mqtt1.reconnect_timeout_max; }
+double mgos_config_get_default_mqtt1_reconnect_timeout_max(void) { return 60.0; }
+void mgos_config_set_mqtt1_reconnect_timeout_max(struct mgos_config *cfg, double v) { cfg->mqtt1.reconnect_timeout_max = v; }
+
+/* mqtt1.ssl_cert */
+const char * mgos_config_get_mqtt1_ssl_cert(const struct mgos_config *cfg) { return cfg->mqtt1.ssl_cert; }
+const char * mgos_config_get_default_mqtt1_ssl_cert(void) { return NULL; }
+void mgos_config_set_mqtt1_ssl_cert(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.ssl_cert, v); }
+
+/* mqtt1.ssl_key */
+const char * mgos_config_get_mqtt1_ssl_key(const struct mgos_config *cfg) { return cfg->mqtt1.ssl_key; }
+const char * mgos_config_get_default_mqtt1_ssl_key(void) { return NULL; }
+void mgos_config_set_mqtt1_ssl_key(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.ssl_key, v); }
+
+/* mqtt1.ssl_ca_cert */
+const char * mgos_config_get_mqtt1_ssl_ca_cert(const struct mgos_config *cfg) { return cfg->mqtt1.ssl_ca_cert; }
+const char * mgos_config_get_default_mqtt1_ssl_ca_cert(void) { return NULL; }
+void mgos_config_set_mqtt1_ssl_ca_cert(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.ssl_ca_cert, v); }
+
+/* mqtt1.ssl_cipher_suites */
+const char * mgos_config_get_mqtt1_ssl_cipher_suites(const struct mgos_config *cfg) { return cfg->mqtt1.ssl_cipher_suites; }
+const char * mgos_config_get_default_mqtt1_ssl_cipher_suites(void) { return NULL; }
+void mgos_config_set_mqtt1_ssl_cipher_suites(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.ssl_cipher_suites, v); }
+
+/* mqtt1.ssl_psk_identity */
+const char * mgos_config_get_mqtt1_ssl_psk_identity(const struct mgos_config *cfg) { return cfg->mqtt1.ssl_psk_identity; }
+const char * mgos_config_get_default_mqtt1_ssl_psk_identity(void) { return NULL; }
+void mgos_config_set_mqtt1_ssl_psk_identity(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.ssl_psk_identity, v); }
+
+/* mqtt1.ssl_psk_key */
+const char * mgos_config_get_mqtt1_ssl_psk_key(const struct mgos_config *cfg) { return cfg->mqtt1.ssl_psk_key; }
+const char * mgos_config_get_default_mqtt1_ssl_psk_key(void) { return NULL; }
+void mgos_config_set_mqtt1_ssl_psk_key(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.ssl_psk_key, v); }
+
+/* mqtt1.clean_session */
+int mgos_config_get_mqtt1_clean_session(const struct mgos_config *cfg) { return cfg->mqtt1.clean_session; }
+int mgos_config_get_default_mqtt1_clean_session(void) { return true; }
+void mgos_config_set_mqtt1_clean_session(struct mgos_config *cfg, int v) { cfg->mqtt1.clean_session = v; }
+
+/* mqtt1.keep_alive */
+int mgos_config_get_mqtt1_keep_alive(const struct mgos_config *cfg) { return cfg->mqtt1.keep_alive; }
+int mgos_config_get_default_mqtt1_keep_alive(void) { return 60; }
+void mgos_config_set_mqtt1_keep_alive(struct mgos_config *cfg, int v) { cfg->mqtt1.keep_alive = v; }
+
+/* mqtt1.will_topic */
+const char * mgos_config_get_mqtt1_will_topic(const struct mgos_config *cfg) { return cfg->mqtt1.will_topic; }
+const char * mgos_config_get_default_mqtt1_will_topic(void) { return NULL; }
+void mgos_config_set_mqtt1_will_topic(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.will_topic, v); }
+
+/* mqtt1.will_message */
+const char * mgos_config_get_mqtt1_will_message(const struct mgos_config *cfg) { return cfg->mqtt1.will_message; }
+const char * mgos_config_get_default_mqtt1_will_message(void) { return NULL; }
+void mgos_config_set_mqtt1_will_message(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->mqtt1.will_message, v); }
+
+/* mqtt1.will_retain */
+int mgos_config_get_mqtt1_will_retain(const struct mgos_config *cfg) { return cfg->mqtt1.will_retain; }
+int mgos_config_get_default_mqtt1_will_retain(void) { return false; }
+void mgos_config_set_mqtt1_will_retain(struct mgos_config *cfg, int v) { cfg->mqtt1.will_retain = v; }
+
+/* mqtt1.max_qos */
+int mgos_config_get_mqtt1_max_qos(const struct mgos_config *cfg) { return cfg->mqtt1.max_qos; }
+int mgos_config_get_default_mqtt1_max_qos(void) { return 2; }
+void mgos_config_set_mqtt1_max_qos(struct mgos_config *cfg, int v) { cfg->mqtt1.max_qos = v; }
+
+/* mqtt1.recv_mbuf_limit */
+int mgos_config_get_mqtt1_recv_mbuf_limit(const struct mgos_config *cfg) { return cfg->mqtt1.recv_mbuf_limit; }
+int mgos_config_get_default_mqtt1_recv_mbuf_limit(void) { return 3072; }
+void mgos_config_set_mqtt1_recv_mbuf_limit(struct mgos_config *cfg, int v) { cfg->mqtt1.recv_mbuf_limit = v; }
+
+/* mqtt1.require_time */
+int mgos_config_get_mqtt1_require_time(const struct mgos_config *cfg) { return cfg->mqtt1.require_time; }
+int mgos_config_get_default_mqtt1_require_time(void) { return false; }
+void mgos_config_set_mqtt1_require_time(struct mgos_config *cfg, int v) { cfg->mqtt1.require_time = v; }
+
+/* mqtt1.cloud_events */
+int mgos_config_get_mqtt1_cloud_events(const struct mgos_config *cfg) { return cfg->mqtt1.cloud_events; }
+int mgos_config_get_default_mqtt1_cloud_events(void) { return true; }
+void mgos_config_set_mqtt1_cloud_events(struct mgos_config *cfg, int v) { cfg->mqtt1.cloud_events = v; }
+
+/* mqtt1.max_queue_length */
+int mgos_config_get_mqtt1_max_queue_length(const struct mgos_config *cfg) { return cfg->mqtt1.max_queue_length; }
+int mgos_config_get_default_mqtt1_max_queue_length(void) { return 5; }
+void mgos_config_set_mqtt1_max_queue_length(struct mgos_config *cfg, int v) { cfg->mqtt1.max_queue_length = v; }
+
 /* rpc */
 const struct mgos_config_rpc *mgos_config_get_rpc(const struct mgos_config *cfg) { return &cfg->rpc; }
 
@@ -743,20 +915,10 @@ int mgos_config_get_rpc_max_queue_length(const struct mgos_config *cfg) { return
 int mgos_config_get_default_rpc_max_queue_length(void) { return 25; }
 void mgos_config_set_rpc_max_queue_length(struct mgos_config *cfg, int v) { cfg->rpc.max_queue_length = v; }
 
-/* rpc.max_non_persistent_channels */
-int mgos_config_get_rpc_max_non_persistent_channels(const struct mgos_config *cfg) { return cfg->rpc.max_non_persistent_channels; }
-int mgos_config_get_default_rpc_max_non_persistent_channels(void) { return 20; }
-void mgos_config_set_rpc_max_non_persistent_channels(struct mgos_config *cfg, int v) { cfg->rpc.max_non_persistent_channels = v; }
-
 /* rpc.default_out_channel_idle_close_timeout */
 int mgos_config_get_rpc_default_out_channel_idle_close_timeout(const struct mgos_config *cfg) { return cfg->rpc.default_out_channel_idle_close_timeout; }
 int mgos_config_get_default_rpc_default_out_channel_idle_close_timeout(void) { return 10; }
 void mgos_config_set_rpc_default_out_channel_idle_close_timeout(struct mgos_config *cfg, int v) { cfg->rpc.default_out_channel_idle_close_timeout = v; }
-
-/* rpc.acl */
-const char * mgos_config_get_rpc_acl(const struct mgos_config *cfg) { return cfg->rpc.acl; }
-const char * mgos_config_get_default_rpc_acl(void) { return NULL; }
-void mgos_config_set_rpc_acl(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->rpc.acl, v); }
 
 /* rpc.acl_file */
 const char * mgos_config_get_rpc_acl_file(const struct mgos_config *cfg) { return cfg->rpc.acl_file; }
@@ -772,11 +934,6 @@ void mgos_config_set_rpc_auth_domain(struct mgos_config *cfg, const char * v) { 
 const char * mgos_config_get_rpc_auth_file(const struct mgos_config *cfg) { return cfg->rpc.auth_file; }
 const char * mgos_config_get_default_rpc_auth_file(void) { return NULL; }
 void mgos_config_set_rpc_auth_file(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->rpc.auth_file, v); }
-
-/* rpc.auth_algo */
-int mgos_config_get_rpc_auth_algo(const struct mgos_config *cfg) { return cfg->rpc.auth_algo; }
-int mgos_config_get_default_rpc_auth_algo(void) { return 0; }
-void mgos_config_set_rpc_auth_algo(struct mgos_config *cfg, int v) { cfg->rpc.auth_algo = v; }
 
 /* rpc.uart */
 const struct mgos_config_rpc_uart *mgos_config_get_rpc_uart(const struct mgos_config *cfg) { return &cfg->rpc.uart; }
@@ -877,6 +1034,11 @@ const char * mgos_config_get_wifi_ap_hostname(const struct mgos_config *cfg) { r
 const char * mgos_config_get_default_wifi_ap_hostname(void) { return NULL; }
 void mgos_config_set_wifi_ap_hostname(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.ap.hostname, v); }
 
+/* wifi.ap.keep_enabled */
+int mgos_config_get_wifi_ap_keep_enabled(const struct mgos_config *cfg) { return cfg->wifi.ap.keep_enabled; }
+int mgos_config_get_default_wifi_ap_keep_enabled(void) { return true; }
+void mgos_config_set_wifi_ap_keep_enabled(struct mgos_config *cfg, int v) { cfg->wifi.ap.keep_enabled = v; }
+
 /* wifi.sta */
 const struct mgos_config_wifi_sta *mgos_config_get_wifi_sta(const struct mgos_config *cfg) { return &cfg->wifi.sta; }
 
@@ -894,26 +1056,6 @@ void mgos_config_set_wifi_sta_ssid(struct mgos_config *cfg, const char * v) { mg
 const char * mgos_config_get_wifi_sta_pass(const struct mgos_config *cfg) { return cfg->wifi.sta.pass; }
 const char * mgos_config_get_default_wifi_sta_pass(void) { return NULL; }
 void mgos_config_set_wifi_sta_pass(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta.pass, v); }
-
-/* wifi.sta.bssid */
-const char * mgos_config_get_wifi_sta_bssid(const struct mgos_config *cfg) { return cfg->wifi.sta.bssid; }
-const char * mgos_config_get_default_wifi_sta_bssid(void) { return NULL; }
-void mgos_config_set_wifi_sta_bssid(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta.bssid, v); }
-
-/* wifi.sta.channel */
-int mgos_config_get_wifi_sta_channel(const struct mgos_config *cfg) { return cfg->wifi.sta.channel; }
-int mgos_config_get_default_wifi_sta_channel(void) { return 0; }
-void mgos_config_set_wifi_sta_channel(struct mgos_config *cfg, int v) { cfg->wifi.sta.channel = v; }
-
-/* wifi.sta.last_bssid */
-const char * mgos_config_get_wifi_sta_last_bssid(const struct mgos_config *cfg) { return cfg->wifi.sta.last_bssid; }
-const char * mgos_config_get_default_wifi_sta_last_bssid(void) { return NULL; }
-void mgos_config_set_wifi_sta_last_bssid(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta.last_bssid, v); }
-
-/* wifi.sta.last_channel */
-int mgos_config_get_wifi_sta_last_channel(const struct mgos_config *cfg) { return cfg->wifi.sta.last_channel; }
-int mgos_config_get_default_wifi_sta_last_channel(void) { return 0; }
-void mgos_config_set_wifi_sta_last_channel(struct mgos_config *cfg, int v) { cfg->wifi.sta.last_channel = v; }
 
 /* wifi.sta.user */
 const char * mgos_config_get_wifi_sta_user(const struct mgos_config *cfg) { return cfg->wifi.sta.user; }
@@ -983,26 +1125,6 @@ const char * mgos_config_get_wifi_sta1_pass(const struct mgos_config *cfg) { ret
 const char * mgos_config_get_default_wifi_sta1_pass(void) { return NULL; }
 void mgos_config_set_wifi_sta1_pass(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta1.pass, v); }
 
-/* wifi.sta1.bssid */
-const char * mgos_config_get_wifi_sta1_bssid(const struct mgos_config *cfg) { return cfg->wifi.sta1.bssid; }
-const char * mgos_config_get_default_wifi_sta1_bssid(void) { return NULL; }
-void mgos_config_set_wifi_sta1_bssid(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta1.bssid, v); }
-
-/* wifi.sta1.channel */
-int mgos_config_get_wifi_sta1_channel(const struct mgos_config *cfg) { return cfg->wifi.sta1.channel; }
-int mgos_config_get_default_wifi_sta1_channel(void) { return 0; }
-void mgos_config_set_wifi_sta1_channel(struct mgos_config *cfg, int v) { cfg->wifi.sta1.channel = v; }
-
-/* wifi.sta1.last_bssid */
-const char * mgos_config_get_wifi_sta1_last_bssid(const struct mgos_config *cfg) { return cfg->wifi.sta1.last_bssid; }
-const char * mgos_config_get_default_wifi_sta1_last_bssid(void) { return NULL; }
-void mgos_config_set_wifi_sta1_last_bssid(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta1.last_bssid, v); }
-
-/* wifi.sta1.last_channel */
-int mgos_config_get_wifi_sta1_last_channel(const struct mgos_config *cfg) { return cfg->wifi.sta1.last_channel; }
-int mgos_config_get_default_wifi_sta1_last_channel(void) { return 0; }
-void mgos_config_set_wifi_sta1_last_channel(struct mgos_config *cfg, int v) { cfg->wifi.sta1.last_channel = v; }
-
 /* wifi.sta1.user */
 const char * mgos_config_get_wifi_sta1_user(const struct mgos_config *cfg) { return cfg->wifi.sta1.user; }
 const char * mgos_config_get_default_wifi_sta1_user(void) { return NULL; }
@@ -1071,26 +1193,6 @@ const char * mgos_config_get_wifi_sta2_pass(const struct mgos_config *cfg) { ret
 const char * mgos_config_get_default_wifi_sta2_pass(void) { return NULL; }
 void mgos_config_set_wifi_sta2_pass(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta2.pass, v); }
 
-/* wifi.sta2.bssid */
-const char * mgos_config_get_wifi_sta2_bssid(const struct mgos_config *cfg) { return cfg->wifi.sta2.bssid; }
-const char * mgos_config_get_default_wifi_sta2_bssid(void) { return NULL; }
-void mgos_config_set_wifi_sta2_bssid(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta2.bssid, v); }
-
-/* wifi.sta2.channel */
-int mgos_config_get_wifi_sta2_channel(const struct mgos_config *cfg) { return cfg->wifi.sta2.channel; }
-int mgos_config_get_default_wifi_sta2_channel(void) { return 0; }
-void mgos_config_set_wifi_sta2_channel(struct mgos_config *cfg, int v) { cfg->wifi.sta2.channel = v; }
-
-/* wifi.sta2.last_bssid */
-const char * mgos_config_get_wifi_sta2_last_bssid(const struct mgos_config *cfg) { return cfg->wifi.sta2.last_bssid; }
-const char * mgos_config_get_default_wifi_sta2_last_bssid(void) { return NULL; }
-void mgos_config_set_wifi_sta2_last_bssid(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta2.last_bssid, v); }
-
-/* wifi.sta2.last_channel */
-int mgos_config_get_wifi_sta2_last_channel(const struct mgos_config *cfg) { return cfg->wifi.sta2.last_channel; }
-int mgos_config_get_default_wifi_sta2_last_channel(void) { return 0; }
-void mgos_config_set_wifi_sta2_last_channel(struct mgos_config *cfg, int v) { cfg->wifi.sta2.last_channel = v; }
-
 /* wifi.sta2.user */
 const char * mgos_config_get_wifi_sta2_user(const struct mgos_config *cfg) { return cfg->wifi.sta2.user; }
 const char * mgos_config_get_default_wifi_sta2_user(void) { return NULL; }
@@ -1141,40 +1243,20 @@ const char * mgos_config_get_wifi_sta2_dhcp_hostname(const struct mgos_config *c
 const char * mgos_config_get_default_wifi_sta2_dhcp_hostname(void) { return NULL; }
 void mgos_config_set_wifi_sta2_dhcp_hostname(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->wifi.sta2.dhcp_hostname, v); }
 
-/* wifi.sta_rssi_thr */
-int mgos_config_get_wifi_sta_rssi_thr(const struct mgos_config *cfg) { return cfg->wifi.sta_rssi_thr; }
-int mgos_config_get_default_wifi_sta_rssi_thr(void) { return -95; }
-void mgos_config_set_wifi_sta_rssi_thr(struct mgos_config *cfg, int v) { cfg->wifi.sta_rssi_thr = v; }
+/* wifi.sta_cfg_idx */
+int mgos_config_get_wifi_sta_cfg_idx(const struct mgos_config *cfg) { return cfg->wifi.sta_cfg_idx; }
+int mgos_config_get_default_wifi_sta_cfg_idx(void) { return 0; }
+void mgos_config_set_wifi_sta_cfg_idx(struct mgos_config *cfg, int v) { cfg->wifi.sta_cfg_idx = v; }
 
 /* wifi.sta_connect_timeout */
 int mgos_config_get_wifi_sta_connect_timeout(const struct mgos_config *cfg) { return cfg->wifi.sta_connect_timeout; }
-int mgos_config_get_default_wifi_sta_connect_timeout(void) { return 15; }
+int mgos_config_get_default_wifi_sta_connect_timeout(void) { return 30; }
 void mgos_config_set_wifi_sta_connect_timeout(struct mgos_config *cfg, int v) { cfg->wifi.sta_connect_timeout = v; }
 
-/* wifi.sta_roam_rssi_thr */
-int mgos_config_get_wifi_sta_roam_rssi_thr(const struct mgos_config *cfg) { return cfg->wifi.sta_roam_rssi_thr; }
-int mgos_config_get_default_wifi_sta_roam_rssi_thr(void) { return -80; }
-void mgos_config_set_wifi_sta_roam_rssi_thr(struct mgos_config *cfg, int v) { cfg->wifi.sta_roam_rssi_thr = v; }
-
-/* wifi.sta_roam_interval */
-int mgos_config_get_wifi_sta_roam_interval(const struct mgos_config *cfg) { return cfg->wifi.sta_roam_interval; }
-int mgos_config_get_default_wifi_sta_roam_interval(void) { return 0; }
-void mgos_config_set_wifi_sta_roam_interval(struct mgos_config *cfg, int v) { cfg->wifi.sta_roam_interval = v; }
-
-/* wifi.tx_rate_limit_11b */
-int mgos_config_get_wifi_tx_rate_limit_11b(const struct mgos_config *cfg) { return cfg->wifi.tx_rate_limit_11b; }
-int mgos_config_get_default_wifi_tx_rate_limit_11b(void) { return -1; }
-void mgos_config_set_wifi_tx_rate_limit_11b(struct mgos_config *cfg, int v) { cfg->wifi.tx_rate_limit_11b = v; }
-
-/* wifi.tx_rate_limit_11g */
-int mgos_config_get_wifi_tx_rate_limit_11g(const struct mgos_config *cfg) { return cfg->wifi.tx_rate_limit_11g; }
-int mgos_config_get_default_wifi_tx_rate_limit_11g(void) { return -1; }
-void mgos_config_set_wifi_tx_rate_limit_11g(struct mgos_config *cfg, int v) { cfg->wifi.tx_rate_limit_11g = v; }
-
-/* wifi.tx_rate_limit_11n */
-int mgos_config_get_wifi_tx_rate_limit_11n(const struct mgos_config *cfg) { return cfg->wifi.tx_rate_limit_11n; }
-int mgos_config_get_default_wifi_tx_rate_limit_11n(void) { return -1; }
-void mgos_config_set_wifi_tx_rate_limit_11n(struct mgos_config *cfg, int v) { cfg->wifi.tx_rate_limit_11n = v; }
+/* wifi.sta_all_chan_scan */
+int mgos_config_get_wifi_sta_all_chan_scan(const struct mgos_config *cfg) { return cfg->wifi.sta_all_chan_scan; }
+int mgos_config_get_default_wifi_sta_all_chan_scan(void) { return true; }
+void mgos_config_set_wifi_sta_all_chan_scan(struct mgos_config *cfg, int v) { cfg->wifi.sta_all_chan_scan = v; }
 
 /* board */
 const struct mgos_config_board *mgos_config_get_board(const struct mgos_config *cfg) { return &cfg->board; }
@@ -1278,6 +1360,7 @@ static const char *mgos_config_str_table[] = {
   "Mongoose_??????",
   "RPC",
   "esp8266_??????",
+  "test.mosquitto.org",
 };
 
 bool mgos_config_is_default_str(const char *s) {
